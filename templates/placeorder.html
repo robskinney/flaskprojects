@@ -1,0 +1,219 @@
+<!-- CREATE CHILD TEMPLATE FOR "ADD" PAGE (aka Insert Record Page) -->
+<!-- Inherit the Parent page first -->
+{% extends "layout.html" %}
+
+<!-- Replace the "placeholder" called head in the parent template with the following -->
+{% block head %}
+    <title>Place Order</title>
+    <div class="topnav">
+      <a href="/gorillacarts">Home</a>
+      <a href="/gorillacarts/customers">Customers</a>
+      <a href="/gorillacarts/products">Products</a>
+      <a href="/gorillacarts/materials">Materials</a>
+      <a href="/gorillacarts/suppliers">Suppliers</a>
+      <a href="/gorillacarts/orders">Orders</a>
+      <a class="active" href="/gorillacarts/placeorder">Place Order</a>
+    </div>
+{% endblock %}
+
+
+<!-- Replace the "placeholder" called body in the parent template with the following -->
+{% block body %}
+
+    <form action="/gorillacarts/placeorder" method="post">
+        <!-- START Specific to Movie Add -->
+        <H2><u>Place Order</u></H2>
+        <!-- Name this TEXTBOX "movname"-->
+        <TABLE style="border-collapse: collapse; width:50%">
+            <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Employee ID</TD>
+                <TD style="padding: 5px; border: solid 1px #777; width:90px;"><select style="width:200px" name="EmployeeID" id="EmployeeID">
+                    {% for m in message %}
+                    <option value="{{m.EmployeeID}}">{{m.EmployeeID}} | {{m.Name}}</option>
+                    {% endfor %}
+                </select></TD>
+            </TR>
+            <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Customer ID</TD>
+                <TD style="padding: 5px; border: solid 1px #777; width:90px;"><select style="width:200px" name="CustomerID" id="CustomerID">
+                    {% for m in customermessage %}
+                    <option value="{{m.CustomerID}}">{{m.CustomerID}} | {{m.Name}}</option>
+                    {% endfor %}
+                </select></TD>
+            </TR>
+        </TABLE>
+<br>
+<br>
+        <TABLE style="border-collapse: collapse; width:50%">
+            <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Product</TD>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Quantity</TD>
+            </TR>
+            <TR>
+                <td style="padding: 5px; border: solid 1px #777; width:90px;">1. <select name="ProductID1" id="ProductID1">
+                    <option value=""></option>
+                    {% for m in productmessage %}
+                    <option value="{{m.ProductID}}">{{m.ProductID}} | {{m.ProductName}} ({{m.Color}})</option>
+                    {% endfor %}
+                </select></td>
+                <TD style="padding: 5px; border: solid 1px #777; width:90px;">
+                    <select name="quantity1" id="quantity1">
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </TD>
+            </TR>
+            <TR>
+                <td style="padding: 5px; border: solid 1px #777; width:90px;">2. <select name="ProductID2" id="ProductID2">
+                    <option value=""></option>
+                    {% for m in productmessage %}
+                    <option value="{{m.ProductID}}">{{m.ProductID}} | {{m.ProductName}} ({{m.Color}})</option>
+                    {% endfor %}
+                </select></td>
+                <TD style="padding: 5px; border: solid 1px #777; width:90px;">
+                    <select name="quantity2" id="quantity2">
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </TD>
+            </TR>
+            <TR>
+                <td style="padding: 5px; border: solid 1px #777; width:90px;">3. <select name="ProductID3" id="ProductID3">
+                    <option value=""></option>
+                    {% for m in productmessage %}
+                    <option value="{{m.ProductID}}">{{m.ProductID}} | {{m.ProductName}} ({{m.Color}})</option>
+                    {% endfor %}
+                </select></td>
+                <TD style="padding: 5px; border: solid 1px #777; width:90px;">
+                    <select name="quantity3" id="quantity3">
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </TD>
+            </TR>
+            <TR>
+                <td style="padding: 5px; border: solid 1px #777; width:90px;">4. <select name="ProductID4" id="ProductID4">
+                    <option value=""></option>
+                    {% for m in productmessage %}
+                    <option value="{{m.ProductID}}">{{m.ProductID}} | {{m.ProductName}} ({{m.Color}})</option>
+                    {% endfor %}
+                </select></td>
+                <TD style="padding: 5px; border: solid 1px #777; width:90px;">
+                    <select name="quantity4" id="quantity4">
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </TD>
+            </TR>
+            <TR>
+                <td style="padding: 5px; border: solid 1px #777; width:90px;">5. <select name="ProductID5" id="ProductID5">
+                    <option value=""></option>
+                    {% for m in productmessage %}
+                    <option value="{{m.ProductID}}">{{m.ProductID}} | {{m.ProductName}} ({{m.Color}})</option>
+                    {% endfor %}
+                </select></td>
+                <TD style="padding: 5px; border: solid 1px #777; width:90px;">
+                    <select name="quantity5" id="quantity5">
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </TD>
+            </TR>
+
+
+        </TABLE>
+
+
+
+
+
+        <!-- Add a Submit button-->
+        <br>
+        <input type="submit" style="background-color: #008CBA; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">
+        <br>
+        <br>
+        {{errormessage}}
+        <br>
+        <br>
+            {% if errorpart2|length > 0 %}
+                <table style="border-collapse: collapse; width:30%">
+                    <tr style="background-color: #ff3333;">
+                        <th style="padding: 5px; border: solid 1px #777; color:white;">Part Number</th>
+                        <th style="padding: 5px; border: solid 1px #777; color:white;">Amount Missing</th>
+                    </tr>
+                    {% for i in errorpart2 %}
+                    <tr>
+                        <td style="padding: 5px; border: solid 1px #777; width:90px;">{{i}}</td>
+                        <td style="padding: 5px; border: solid 1px #777; width:90px;">{{errorpart2[i]}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+        <br>
+        {{errormessage2}}
+        <br>
+        <br>
+            {% if errorpart3|length > 0 %}
+                <table style="border-collapse: collapse; width:30%">
+                    <tr style="background-color: #ff3333;">
+                        <th style="padding: 5px; border: solid 1px #777; color:white;">Product ID</th>
+                        <th style="padding: 5px; border: solid 1px #777; color:white;">Purchasable Amount</th>
+                    </tr>
+                    {% for i in errorpart3 %}
+                    <tr>
+                        <td style="padding: 5px; border: solid 1px #777; width:90px;">{{i}}</td>
+                        <td style="padding: 5px; border: solid 1px #777; width:90px;">{{errorpart3[i]}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+        <br>
+        <!-- END Specific to Movie Add -->
+    </form>
+
+ {% endblock %}

@@ -1,0 +1,54 @@
+{# NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE #}
+{% extends "layout.html" %}
+
+{% block head %}
+    <title>BOM Details</title>
+    <div class="topnav">
+      <a href="/gorillacarts">Home</a>
+      <a href="/gorillacarts/customers">Customers</a>
+      <a class="active" href="/gorillacarts/products">Products</a>
+      <a href="/gorillacarts/materials">Materials</a>
+      <a href="/gorillacarts/suppliers">Suppliers</a>
+      <a href="/gorillacarts/orders">Orders</a>
+      <a href="/gorillacarts/placeorder">Place Order</a>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+<form action="/orderdetails/<title>" method="get">
+
+    <table width="100%">
+        <tr>
+            <td colspan="3">
+                <h1>BOM Details</h1>
+                <H2><u>Product ID: {{message[0]['ProductID']}}</u></H2>
+            </td>
+        </tr>
+    </table>
+    {% for m in message %}
+    <TABLE style="border-collapse: collapse; width:50%">
+        <TR>
+            <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE; width:50%">Part Name</TD>
+            <TD style="padding: 5px; border: solid 1px #777;">{{m.ProductName}}</TD>
+        </TR>
+        <TR>
+            <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE; width:50%">Part No</TD>
+            <TD style="padding: 5px; border: solid 1px #777;">{{m.PartNo}}</TD>
+        </TR>
+        <TR>
+            <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE; width:50%">Quantity</TD>
+            <TD style="padding: 5px; border: solid 1px #777;">{{m.Quantity}}</TD>
+         </TR>
+    </TABLE>
+    <br>
+    {% endfor %}
+    <br>
+
+
+    <!-- END Specific to Movie Add -->
+
+
+</form>
+
+{% endblock %}

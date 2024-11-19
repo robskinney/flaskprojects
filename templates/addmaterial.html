@@ -1,0 +1,66 @@
+<!-- CREATE CHILD TEMPLATE FOR "ADD" PAGE (aka Insert Record Page) -->
+<!-- Inherit the Parent page first -->
+{% extends "layout.html" %}
+
+<!-- Replace the "placeholder" called head in the parent template with the following -->
+{% block head %}
+    <title>Add Material</title>
+    <div class="topnav">
+      <a href="/gorillacarts">Home</a>
+      <a href="/gorillacarts/customers">Customers</a>
+      <a href="/gorillacarts/products">Products</a>
+      <a class="active" href="/gorillacarts/materials">Materials</a>
+      <a href="/gorillacarts/suppliers">Suppliers</a>
+      <a href="/gorillacarts/orders">Orders</a>
+      <a href="/gorillacarts/placeorder">Place Order</a>
+    </div>
+{% endblock %}
+
+
+<!-- Replace the "placeholder" called body in the parent template with the following -->
+{% block body %}
+
+    <form action="/gorillacarts/addmaterial" method="post">
+        <!-- START Specific to Movie Add -->
+        <H2><u>Add Material</u></H2>
+        <!-- Name this TEXTBOX "movname"-->
+
+        <TABLE style="border-collapse: collapse; width:50%">
+            <TR>
+               <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">SW Part No.</TD>
+                <TD style="padding: 5px; border: solid 1px #777; width:90px;"><input autocomplete="off" autofocus name="SWPartNo" placeholder="SW Part No" type="text" required></TD>
+            </TR>
+            <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Supplier Part No.</TD>
+                 <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="SupplierPartNo" placeholder="Supplier Part No" type="text" required></TD>
+             </TR>
+             <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Supplier ID</TD>
+                <td style="padding: 5px; border: solid 1px #777;"><select name="SupplierID" id="SupplierID">
+                    {% for m in suppliermessage %}
+                    <option value="{{m.SupplierID}}">{{m.SupplierID}} | {{m.Name}}</option>
+                    {% endfor %}
+                </select></td>
+             </TR>
+             <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Product Name</TD>
+                 <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="ProductName" placeholder="Product Name" type="text" required></TD>
+             </TR>
+             <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Price</TD>
+                 <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="Price" placeholder="Price" type="Double" required></TD>
+             </TR>
+             <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Quantity Available</TD>
+                 <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="QuantityAvailable" placeholder="Quantity Available" type="integer" required></TD>
+             </TR>
+        </TABLE>
+        <!-- Add a Submit button-->
+        <br>
+        <input type="submit" style="background-color: #008CBA; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">
+        <br>
+        <br>
+        <!-- END Specific to Movie Add -->
+    </form>
+
+ {% endblock %}

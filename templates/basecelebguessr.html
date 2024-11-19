@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='images/favicon.ico')}}">
+    <style>
+      body, html {
+      width: 100%;
+      height: 100%;
+      }
+
+    .confetti {
+      left: 0;
+      pointer-events: none ;
+      position: fixed;
+      top: 0;
+      transform: translate3d(0, 0, 0);
+      will-change: transform;
+      height: 100%;
+      width: 100%;
+    }
+
+    .confetti-item {
+      position: absolute;
+      transform: translate3d(0, 0, 0);
+      will-change: transform;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-100%)
+      }
+      95%{
+        animation-timing-function: ease-in-out;
+        transform: translateY(calc(100vh - 55%))
+      }
+      100% {
+        transform: translateY(calc(150vh - 65%))
+      }}
+  </style>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<!-- Uses a very similar navbar to the dino site, only uses the B.There option and the Events option. -->
+<body class="d-flex flex-column h-100 p-2">
+    <div class="container">
+      <main class="flex-shrink-0">
+        <div class="container">
+          <!-- Here's where the content of the other pages will be put into -->
+          {% block content %}{% endblock %}
+        </div>
+      </main>
+    </div>
+    <!-- Simple footer found on the Bootstrap website. -->
+    <div class="container pt-5">
+      <footer class="footer mt-auto py-3 bg-light">
+          <!-- <div class="d-flex flex-wrap"> -->
+          <div class="d-flex bd-highlight align-items-center pr-2">
+            <div class="pl-2 w-100 bd-highlight" style="padding-left:1%">
+              <span class="text-muted">   <a href="https://www.robertskinney.com/">Robert Kinney</a> © 2023 | Powered by iMDB datasets and the TMDb API but is not endorsed or certified by TMDb. <a href="{{url_for('feedback')}}">Have feedback?</a>  </span>
+            </div>
+            <svg class="pr-2 flex-shrink-1 bd-highlight" style="max-width:10%; padding-right:1%;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 190.24 81.52"><defs><style>.cls-1{fill:url(#linear-gradient);}</style><linearGradient id="linear-gradient" y1="40.76" x2="190.24" y2="40.76" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#90cea1"></stop><stop offset="0.56" stop-color="#3cbec9"></stop><stop offset="1" stop-color="#00b3e5"></stop></linearGradient></defs><title>Asset 2</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M105.67,36.06h66.9A17.67,17.67,0,0,0,190.24,18.4h0A17.67,17.67,0,0,0,172.57.73h-66.9A17.67,17.67,0,0,0,88,18.4h0A17.67,17.67,0,0,0,105.67,36.06Zm-88,45h76.9A17.67,17.67,0,0,0,112.24,63.4h0A17.67,17.67,0,0,0,94.57,45.73H17.67A17.67,17.67,0,0,0,0,63.4H0A17.67,17.67,0,0,0,17.67,81.06ZM10.41,35.42h7.8V6.92h10.1V0H.31v6.9h10.1Zm28.1,0h7.8V8.25h.1l9,27.15h6l9.3-27.15h.1V35.4h7.8V0H66.76l-8.2,23.1h-.1L50.31,0H38.51ZM152.43,55.67a15.07,15.07,0,0,0-4.52-5.52,18.57,18.57,0,0,0-6.68-3.08,33.54,33.54,0,0,0-8.07-1h-11.7v35.4h12.75a24.58,24.58,0,0,0,7.55-1.15A19.34,19.34,0,0,0,148.11,77a16.27,16.27,0,0,0,4.37-5.5,16.91,16.91,0,0,0,1.63-7.58A18.5,18.5,0,0,0,152.43,55.67ZM145,68.6A8.8,8.8,0,0,1,142.36,72a10.7,10.7,0,0,1-4,1.82,21.57,21.57,0,0,1-5,.55h-4.05v-21h4.6a17,17,0,0,1,4.67.63,11.66,11.66,0,0,1,3.88,1.87A9.14,9.14,0,0,1,145,59a9.87,9.87,0,0,1,1,4.52A11.89,11.89,0,0,1,145,68.6Zm44.63-.13a8,8,0,0,0-1.58-2.62A8.38,8.38,0,0,0,185.63,64a10.31,10.31,0,0,0-3.17-1v-.1a9.22,9.22,0,0,0,4.42-2.82,7.43,7.43,0,0,0,1.68-5,8.42,8.42,0,0,0-1.15-4.65,8.09,8.09,0,0,0-3-2.72,12.56,12.56,0,0,0-4.18-1.3,32.84,32.84,0,0,0-4.62-.33h-13.2v35.4h14.5a22.41,22.41,0,0,0,4.72-.5,13.53,13.53,0,0,0,4.28-1.65,9.42,9.42,0,0,0,3.1-3,8.52,8.52,0,0,0,1.2-4.68A9.39,9.39,0,0,0,189.66,68.47ZM170.21,52.72h5.3a10,10,0,0,1,1.85.18,6.18,6.18,0,0,1,1.7.57,3.39,3.39,0,0,1,1.22,1.13,3.22,3.22,0,0,1,.48,1.82,3.63,3.63,0,0,1-.43,1.8,3.4,3.4,0,0,1-1.12,1.2,4.92,4.92,0,0,1-1.58.65,7.51,7.51,0,0,1-1.77.2h-5.65Zm11.72,20a3.9,3.9,0,0,1-1.22,1.3,4.64,4.64,0,0,1-1.68.7,8.18,8.18,0,0,1-1.82.2h-7v-8h5.9a15.35,15.35,0,0,1,2,.15,8.47,8.47,0,0,1,2.05.55,4,4,0,0,1,1.57,1.18,3.11,3.11,0,0,1,.63,2A3.71,3.71,0,0,1,181.93,72.72Z"></path></g></g></svg>
+          </div>
+      </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <script>
+      if ( window.history.replaceState ) {
+      window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
+    <script>
+      // Function to trigger modal automatically
+      $(document).ready(function() {
+      $('#myModal').modal('show');
+      confetti();
+      });
+      function randomize(collection) {
+          var randomNumber = Math.floor(Math.random() * collection.length);
+          return collection[randomNumber];
+      }
+      function confetti() {
+      $(".confetti").remove();
+      var $confettiItems = $('<div class="confetti"></div>'),
+          colors = ["#3b5692", "#f9c70b", "#00abed", "#ea6747"],
+          height = 6.6,
+          width = 6.6;
+
+      var scale, $confettiItem;
+
+      for (var i = 0; i < 100; i++) {
+          scale = Math.random() * 1.75 + 1;
+          $confettiItem = $(
+          "<svg class='confetti-item' width='" +
+              width * scale +
+              "' height='" +
+              height * scale +
+              "' viewbox='0 0 " +
+              width +
+              " " +
+              height +
+              "'>\n  <use transform='rotate(" +
+              Math.random() * 360 +
+              ", " +
+              width / 2 +
+              ", " +
+              height / 2 +
+              ")' xlink:href='#svg-confetti' />\n</svg>"
+          );
+          $confettiItem.css({
+          animation:
+              Math.random() +
+              2 +
+              "s " +
+              Math.random() * 2 +
+              "s confetti-fall ease-in both",
+          color: randomize(colors),
+          left: Math.random() * 100 + "vw"
+          });
+          $confettiItems.append($confettiItem);
+      }
+      $("body").append($confettiItems);
+      }
+  </script>
+  <script>
+    document.querySelector('#shareBtn')
+    .addEventListener('click', event => {
+
+        // Fallback, Tries to use API only
+        // if navigator.share function is
+        // available
+        if (navigator.share) {
+            navigator.share({
+                // Title that occurs over
+                // web share dialog
+                title: 'CelebGuessr',
+                text: "Celeb of the Day {{daysSince}}\n{{guessCount}} guesses 📽️\n{{numTips}} tips ℹ️\nhttps://rskinney.pythonanywhere.com/",
+                // URL to share
+            }).then(() => {
+                console.log('Thanks for sharing!');
+            }).catch(err => {
+
+                // Handle errors, if occured
+                console.log(
+                "Error while using Web share API:");
+                console.log(err);
+            });
+        } else {
+
+            // Alerts user if API not available
+            alert("Browser doesn't support this API!");
+        }
+    })
+    function calculateHMSleft()
+    {
+      //calculate
+      var now = new Date();
+      var hoursleft = 23-now.getHours();
+      var minutesleft = 59-now.getMinutes();
+      var secondsleft = 59-now.getSeconds();
+
+      //format 0 prefixes
+      if(minutesleft<10) minutesleft = "0"+minutesleft;
+      if(secondsleft<10) secondsleft = "0"+secondsleft;
+
+      //display
+      $('#HMSremaining').html(hoursleft+":"+minutesleft+":"+secondsleft);
+    }
+
+    calculateHMSleft();
+    setInterval(calculateHMSleft, 1000);
+</script>
+</body>
+
+</html>

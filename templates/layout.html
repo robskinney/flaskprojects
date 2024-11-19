@@ -1,0 +1,41 @@
+<!-- CREATE PARENT TEMPLATE FOR THE ENTIRE WEBSITE -->
+
+<!-- BEGIN: STATIC HTML -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+
+        {% endblock %}
+        <!-- Notice the syntax. It is customary to keep the static information in a folder called static -->
+        <!-- You can then create subfolders in the static folder and reference them in the file parameter -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="section">
+                <table>
+                    <tr>
+                        <td style="vertical-align:top">
+        <!-- END: STATIC HTML -->
+
+                            <!-- BEGIN: DYNAMIC HTML-->
+                            <!-- Placeholder called "body" -->
+                            {% block body %}
+                            {% endblock %}
+                            <!-- End Placeholder called "body" -->
+                            <!-- END: DYNAMIC HTML -->
+
+        <!-- BEGIN: STATIC HTML -->
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="footer">
+            <p style="text-align:center;">Copyright © Gorilla Carts, 2022</p>
+        </div>
+    </body>
+</html>
+<!-- END: STATIC HTML -->

@@ -1,0 +1,58 @@
+{# NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE #}
+{% extends "layout.html" %}
+
+{% block head %}
+    <title>View Invoice</title>
+    <div class="topnav">
+      <a href="/gorillacarts">Home</a>
+      <a href="/gorillacarts/customers">Customers</a>
+      <a href="/gorillacarts/products">Products</a>
+      <a href="/gorillacarts/materials">Materials</a>
+      <a href="/gorillacarts/suppliers">Suppliers</a>
+      <a class="active" href="/gorillacarts/orders">Orders</a>
+      <a href="/gorillacarts/placeorder">Place Order</a>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+<form action="/orderdetails/<title>" method="get">
+    <table width="100%">
+        <tr>
+            <td colspan="3">
+                <h1>Order Invoice</h1>
+                <H2><u>Order ID: {{message[0]['OrderID']}}</u></H2>
+                <p>Order Date: {{D}}</p>
+            </td>
+        </tr>
+    </table>
+    {% for m in message %}
+    <TABLE style="border-collapse: collapse; width:50%">
+        <TR>
+            <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE; width:50%;">Product Name</TD>
+            <TD style="padding: 5px; border: solid 1px #777;">{{m.ProductName}}</TD>
+        </TR>
+        <TR>
+            <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Product ID</TD>
+            <TD style="padding: 5px; border: solid 1px #777;">{{m.ProductID}}</TD>
+        </TR>
+        <TR>
+            <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Quantity</TD>
+            <TD style="padding: 5px; border: solid 1px #777;">{{m.Qty}}</TD>
+         </TR>
+         <TR>
+            <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Amount Receivable</TD>
+            <TD style="padding: 5px; border: solid 1px #777;">${{"{:.2f}".format(m.AmtPayable)}}</TD>
+         </TR>
+    </TABLE>
+    <br>
+    {% endfor %}
+    <br>
+
+
+    <!-- END Specific to Movie Add -->
+
+
+</form>
+
+{% endblock %}

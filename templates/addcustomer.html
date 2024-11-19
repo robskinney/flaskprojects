@@ -1,0 +1,58 @@
+<!-- CREATE CHILD TEMPLATE FOR "ADD" PAGE (aka Insert Record Page) -->
+<!-- Inherit the Parent page first -->
+{% extends "layout.html" %}
+
+<!-- Replace the "placeholder" called head in the parent template with the following -->
+{% block head %}
+    <title>Add Customer</title>
+    <div class="topnav">
+      <a href="/gorillacarts">Home</a>
+      <a class="active" href="/gorillacarts/customers">Customers</a>
+      <a href="/gorillacarts/products">Products</a>
+      <a href="/gorillacarts/materials">Materials</a>
+      <a href="/gorillacarts/suppliers">Suppliers</a>
+      <a href="/gorillacarts/orders">Orders</a>
+      <a href="/gorillacarts/placeorder">Place Order</a>
+    </div>
+{% endblock %}
+
+
+<!-- Replace the "placeholder" called body in the parent template with the following -->
+{% block body %}
+
+    <form action="/gorillacarts/addcustomer" method="post">
+        <!-- START Specific to Movie Add -->
+        <H2><u>Add Customer</u></H2>
+        <!-- Name this TEXTBOX "movname"-->
+
+        <TABLE style="border-collapse: collapse; width:50%">
+            <TR>
+               <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Name</TD>
+                <TD style="padding: 5px; border: solid 1px #777; width:90px;"><input autocomplete="off" autofocus name="name" placeholder="Name" type="text" required></TD>
+            </TR>
+            <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">ZIP Code</TD>
+                 <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="ZIP" placeholder="ZIP" type="text" required></TD>
+             </TR>
+             <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Telephone</TD>
+                 <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="telephone" placeholder="Telephone" type="tel" minlength="10" maxlength="10" required></TD>
+             </TR>
+             <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Email</TD>
+                 <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="email" placeholder="Email" type="text" required></TD>
+             </TR>
+             <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Category</TD>
+                 <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="category" placeholder="Category" type="text" required></TD>
+             </TR>
+        </TABLE>
+        <!-- Add a Submit button-->
+        <br>
+        <input type="submit" style="background-color: #008CBA; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">
+        <br>
+        <br>
+        <!-- END Specific to Movie Add -->
+    </form>
+
+ {% endblock %}

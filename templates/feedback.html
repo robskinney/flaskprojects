@@ -1,0 +1,48 @@
+{% extends "basecelebguessr.html" %}
+{% block title %} CelebGuessr {% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-xl">
+            <div class="row">
+                <div class="d-flex bd-highlight align-items-center" style="max-height: 100px;">
+                    <div>
+                        <h1>Celebrity of the Day</h1>
+                    </div>
+                    <div class="p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" type="button" fill="currentColor" class="bi bi-info-circle" height="25" data-bs-toggle="modal" data-bs-target="#infoModal">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+                          </svg>
+                    </div>
+                </div>
+            </div>
+
+            <form action="/celebguessr/feedback" method="post">
+                <div class="form-group">
+                  <label for="email">Email address (Optional)</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="rating">How would you rate CelebGuessr? (1-5)</label>
+                  <select class="form-control" name="rating" id="rating">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+                <div class="form-group pb-2">
+                  <label for="description">What would you like to see change / added to CelebGuessr?</label>
+                  <textarea class="form-control" id="description" maxlength="500" name="description" rows="3" required></textarea>
+                </div>
+                <button type="submit" name="action" value="Submit" class="btn-lg btn-primary">Submit</button>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

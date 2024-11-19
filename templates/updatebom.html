@@ -1,0 +1,62 @@
+{# NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE #}
+{% extends "layout.html" %}
+
+{% block head %}
+    <title>Edit BOM</title>
+    <div class="topnav">
+      <a href="/gorillacarts">Home</a>
+      <a href="/gorillacarts/customers">Customers</a>
+      <a class="active" href="/gorillacarts/products">Products</a>
+      <a href="/gorillacarts/materials">Materials</a>
+      <a href="/gorillacarts/suppliers">Suppliers</a>
+      <a href="/gorillacarts/orders">Orders</a>
+      <a href="/gorillacarts/placeorder">Place Order</a>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+<form action="/EditBOM" method="post">
+
+    <table width="100%">
+        <tr>
+            <td colspan="3">
+                <h1>Edit BOM: {{message[0]['ProductID']}}</h1>
+            </td>
+        </tr>
+    </table>
+    {% for m in message %}
+            <TABLE style="border-collapse: collapse; width:50%">
+            <tr>
+                <td style="text-align: left">
+                    <input
+                    type="hidden"
+                    autocomplete="off"
+                    autofocus
+                    name="SWPartNo"
+                    placeholder="SWPartNo"
+                    type="text"
+                    value="{{m.ProductID}}"
+                    required>
+                </td>
+            </tr>
+            <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Part No.</TD>
+                <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="PartNo" placeholder="PartNo" value="{{m.PartNo}}" type="text" required></TD>
+            </TR>
+            <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Quantity</TD>
+                <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="Quantity" placeholder="Quantity" value="{{m.Quantity}}" type="integer" required></TD>
+             </TR>
+        </TABLE>
+    {% endfor %}
+    <br>
+    <input type="submit" style="background-color: #008CBA; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">
+
+
+    <!-- END Specific to Movie Add -->
+
+
+</form>
+
+{% endblock %}

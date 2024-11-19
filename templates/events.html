@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} AutoTrackr {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <!-- Headers for the date and name -->
+                        <th>Date</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Now we traverse all of the events, writing the name and date of each one as new rows in the list. -->
+                    {% for i in events %}
+                    <tr>
+                        <td>{{i['date']}}</td>
+                        <td><a href="{{url_for('events', event_id=i['id'])}}">{{i['name']}}</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- This button will take the user to the event_form page without an event, leading them to the creation part of that page. -->
+        <div class="row">
+            <a href="{{url_for('create')}}" role="button" class="btn btn-primary btn-lg px-4 gap-3">Create event</a>
+        </div>
+    </div>
+
+{% endblock %}

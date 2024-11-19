@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %} AutoTrackr {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- This page asks the user if they want to delete a specific row from the events table. -->
+        <h2> Are you sure you want to delete event <b>"{{event['name']}}"?</b> This will also remove any attendees. </h2>
+        <table class="table">
+            <!-- Here we will have a table with headers of the keys in the dictionary and then rows with the specific information from said event_id. -->
+            <thead>
+                <tr></tr>
+                    <th scope="col"><b>Date</b></th>
+                    <th scope="col"><b>Host</b></th>
+                    <th scope="col"><b>Description</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{event['date']}}</td>
+                    <td>{{event['host']}}</td>
+                    <td>{{event['description']}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <!-- This checks to see if the user is certain that they want to delete a value, if they say no it will return back to the event page of that specific item, if the user says yes then it will submit the form, deleting the item. -->
+        <form method='POST' name='edit_event'>  
+            <div class="row align-items-center">
+                <div class="col text-center">
+                    <a href="{{url_for('events', event_id=event['id'])}}" role="button" class="btn btn-secondary btn-lg px-4 gap-3">Go back</a>
+                    <button class="btn btn-danger btn-lg px-4 gap-3" type="submit" value="Submit">Delete this event</button>
+                </div>
+            </div>
+        </form>
+</div>
+{% endblock %}

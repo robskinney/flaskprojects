@@ -1,0 +1,30 @@
+<!-- CREATE CHILD TEMPLATE FOR "INDEX" PAGE (aka Home Page) -->
+<!-- Inherit the Parent page first -->
+{% extends "layout.html" %}
+
+<!-- Replace the "placeholder" called head in the parent template with the following -->
+{% block head %}
+    <title>Gorilla Carts Home</title>
+    <div class="topnav">
+      <a class="active" href="/gorillacarts">Home</a>
+      <a href="gorillacarts/customers">Customers</a>
+      <a href="gorillacarts/products">Products</a>
+      <a href="gorillacarts/materials">Materials</a>
+      <a href="gorillacarts/suppliers">Suppliers</a>
+      <a href="gorillacarts/orders">Orders</a>
+      <a href="gorillacarts/placeorder">Place Order</a>
+    </div>
+{% endblock %}
+
+<!-- Replace the "placeholder" called body in the parent template with the following -->
+{% block body %}
+
+<!-- Add text that will be static for the INDEX page-->
+
+<div class="px-4 py-5 my-5 text-center bg-transparent">
+    <img class="d-block mx-auto mb-4" src="{{url_for('static', filename='images/cart.png')}}" alt="Gorilla Carts Logo" width="240" height="240">
+    <h1 class="display-5 fw-bold">Gorilla Carts, Inc.</h1>
+    <p class="lead mb-4">Our foldable Gorilla Carts are perfect for professionals with limited living space.</p>
+</div>
+
+{% endblock %}

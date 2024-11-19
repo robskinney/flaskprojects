@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %} AutoTrackr {% endblock %}
+{% block content %}
+<div class="container">
+    {% if error %}
+        <p> ERROR: {{error}} </p>
+    {% endif %}
+    <div class="row">
+    <!-- checking if attendee is present to know if I should be editing or adding attendee -->
+    {% if attendee %}
+        <!-- Shows a different header if they're trying to edit, includes attendee name -->
+        <h2> <b>Edit attendee information for </b> {{attendee['name']}} </h2>
+        <form method='POST' name='edit_event'>  
+            <div class="form-group row">
+                <!-- functionally very similar to the events form, just different labels. Uses information from the attendee dictionary. -->
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-4">
+                <input type="text" class="form-control" id="name" name="name" value="{{attendee['name']}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="email" name="email" value="{{attendee['email']}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="comment" class="col-sm-2 col-form-label">Comment</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="comment" name="comment" value="{{attendee['comment']}}">
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col text-center">
+                    <button class="btn btn-primary" type="submit" value="Submit">Save</button>
+                    <button class="btn btn-secondary" type="reset" value="Reset">Reset</button>
+                </div>
+            </div>
+        </form>
+    <!-- However, if an attendee isn't being pushed to this page it will pull up a different header that says to add an attendee -->
+    {% else %}
+        <!-- This shows the event name to the user as well as the add event header. -->
+        <h2> <b>Add attendee to:</b> {{event['name']}}</h2>
+        <form method='POST' name='create_event'>  
+            <div class="form-group row">
+                <!-- Here we're using placeholders instead of values because we want the text to disappear when hte user starts to edit it. -->
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-4">
+                <input type="name" class="form-control" id="name" name="name" placeholder="John A">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                <input type="email" class="form-control" id="email" name="email" placeholder="john123@yahoo.com">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="comment" class="col-sm-2 col-form-label">Comment</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="comment" name="comment" placeholder="Thank you!">
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col text-center">
+                    <!-- Uses Bootstrap's methods of submitting the form and resetting the form. -->
+                    <button class="btn btn-primary" type="submit" value="Submit">Save</button>
+                    <button class="btn btn-secondary" type="reset" value="Reset">Reset</button>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}

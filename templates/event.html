@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %} AutoTrackr {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <!-- Shows the name of the event -->
+            <h2><b>{{event['name']}}</b></h2>
+            <table class="table">
+                <thead>
+                    <tr></tr>
+                        <!-- Headers of thek keys in the dictionary -->
+                        <th scope="col"><b>Date</b></th>
+                        <th scope="col"><b>Host</b></th>
+                        <th scope="col"><b>Description</b></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!-- Here we have the information of this particular event under each header. -->
+                        <td>{{event['date']}}</td>
+                        <td>{{event['host']}}</td>
+                        <td>{{event['description']}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <h2><b>Attendees</b></h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <!-- Headers for the date and name -->
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Now we traverse all of the events, writing the name and date of each one as new rows in the list. -->
+                    {% for i in attendees %}
+                    <tr>
+                        <td>{{i['name']}}</td>
+                        <td>{{i['email']}}</td>
+                        <td>{{i['comment']}}</td>
+                        <td><a href="{{url_for('edit_attendee',attendee_id=i['id'],event_id=event['id'])}}" role="button" class="btn btn-secondary btn-md px-3 gap-3">Edit</a><a href="{{url_for('del_attendee',attendee_id=i['id'],event_id=event['id'])}}" role="button" class="btn btn-danger btn-md px-3 gap-3">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row align-items-center">
+            <div class="col text-center">
+                <!-- If the user presses the edit button, it will redirect them to the edit page with the event_id being the name of the page that they're on -->
+                <a href="{{url_for('edit', event_id=event['id'])}}" role="button" class="btn btn-primary btn-lg px-4 gap-3">Edit event</a>
+                <!-- If the user uses the delete button it will take them to the delete_form page with the event_id being the name of the event they're on. -->
+                <a href="{{url_for('delete', event_id=event['id'])}}" role="button" class="btn btn-danger btn-lg px-4 gap-3">Delete event</a>
+                <a href="{{url_for('add_attendee', event_id=event['id'])}}" role="button" class="btn btn-secondary btn-lg px-4 gap-3">Add attendee</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

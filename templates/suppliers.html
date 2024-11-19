@@ -1,0 +1,53 @@
+{# NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE #}
+<!-- CREATE CHILD TEMPLATE FOR "INDEX" PAGE (aka Home Page) -->
+<!-- Inherit the Parent page first -->
+{% extends "layout.html" %}
+
+<!-- Replace the "placeholder" called head in the parent template with the following -->
+{% block head %}
+    <title>Suppliers</title>
+    <div class="topnav">
+      <a href="/gorillacarts">Home</a>
+      <a href="/gorillacarts/customers">Customers</a>
+      <a href="/gorillacarts/products">Products</a>
+      <a href="/gorillacarts/materials">Materials</a>
+      <a class="active" href="/gorillacarts/suppliers">Suppliers</a>
+      <a href="/gorillacarts/orders">Orders</a>
+      <a href="/gorillacarts/placeorder">Place Order</a>
+    </div>
+{% endblock %}
+
+<!-- Replace the "placeholder" called body in the parent template with the following -->
+{% block body %}
+
+<!-- NOTE***** NO ACTION OR METHOD - WE ARE JUST USING THE LINKS BELOW-->
+<form>
+     <H2><u>List of Suppliers</u></H2>
+     <TABLE style="border-collapse: collapse;">
+         <TR style="background-color: #D6EEEE;">
+            <TH style="padding: 5px; border: solid 1px #777;">Supplier ID (Click to Modify)</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Supplier Name</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">ZIP Code</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Telephone</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">E-Mail</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Delete</TD>
+        </TH>
+        <!-- EXAMPLES OF THE JINJA LANGUAGE FOR LOOPS-->
+         {% for b in message %}
+             <TR>
+                  <TD style="padding: 5px; border: solid 1px #777;"><a href="/gorillacarts/EditSupplier/{{b.SupplierID}}">{{b.SupplierID}}</a></TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{b.Name}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{b.ZIP}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{b.Telephone}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{b.Email}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;"><a href="{{ url_for('deleteSupplierFromList', title=b.SupplierID) }}">Delete</a></TD>
+
+             </TR>
+         {% endfor %}
+     </TABLE>
+    <br>
+    <a href="/gorillacarts/addsupplier" style="background-color: #008CBA; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Add Supplier</a>
+
+</form>
+
+{% endblock %}

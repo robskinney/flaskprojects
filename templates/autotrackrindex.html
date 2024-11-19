@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} AutoTrackr {% endblock %}
+{% block content %}
+    <!-- Simple hero image with help from the Bootstrap website, uses an image found on the Canvas page. -->
+    <div class="px-4 py-5 my-5 text-center bg-transparent">
+        <img class="d-block mx-auto mb-4" src="{{url_for('static', filename='images/logo.png')}}" alt="B.There Logo" width="120" height="120">
+        <h1 class="display-5 fw-bold">AutoTrackr</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">AutoTrackr is a simple website that allows for automotive shows to keep track of event dates and information!</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="{{url_for('events')}}" role="button" class="btn btn-primary btn-lg px-4 gap-3">See events</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

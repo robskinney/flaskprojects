@@ -1,0 +1,35 @@
+{# NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE #}
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+    {% for m in message %}
+    <table width="100%">
+        <tr>
+            <td colspan="3" style="text-align: center;">
+                <h1>View Book: {{m.Title}}</h1>
+            </td>
+        </tr>
+    </table>
+    <table border="1">
+        <tr>
+            <td>
+                Author:
+            </td>
+            <td>
+                {{m.Author}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Year Released:
+            </td>
+            <td>
+                {{m.Year}}
+            </td>
+        </tr>
+    </table>
+    {% endfor %}
+
+{% endblock %}

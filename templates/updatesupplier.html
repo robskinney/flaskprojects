@@ -1,0 +1,82 @@
+{# NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE NEW FILE #}
+{% extends "layout.html" %}
+
+{% block head %}
+    <title>Edit Supplier</title>
+    <div class="topnav">
+      <a href="/gorillacarts">Home</a>
+      <a href="/gorillacarts/customers">Customers</a>
+      <a href="/gorillacarts/products">Products</a>
+      <a href="/gorillacarts/materials">Materials</a>
+      <a class="active" href="/gorillacarts/suppliers">Suppliers</a>
+      <a href="/gorillacarts/orders">Orders</a>
+      <a href="/gorillacarts/placeorder">Place Order</a>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+<form action="/gorillacarts/EditSupplier" method="post">
+
+    {% for m in message %}
+    <table width="100%">
+        <tr>
+            <td colspan="3">
+                <h1>Edit Supplier: {{m.Name}}</h1>
+            </td>
+        </tr>
+    </table>
+    <table>
+
+    </table>
+            <TABLE style="border-collapse: collapse; width:50%">
+            <tr>
+                <td style="text-align: left">
+                    <input
+                    type="hidden"
+                    autocomplete="off"
+                    autofocus
+                    name="SupplierID"
+                    placeholder="SupplierID"
+                    type="integer"
+                    value="{{m.SupplierID}}"
+                    required>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    <input
+                    type="hidden"
+                    autocomplete="off"
+                    autofocus
+                    name="Name"
+                    placeholder="Name"
+                    type="text"
+                    value="{{m.Name}}"
+                    required>
+                </td>
+            </tr>
+            <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">ZIP Code</TD>
+                <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="ZIP" placeholder="ZIP" value="{{m.ZIP}}" type="text" required></TD>
+            </TR>
+            <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Telephone</TD>
+                <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="Telephone" placeholder="Telephone" value="{{m.Telephone}}" type="text" required></TD>
+             </TR>
+             <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Email</TD>
+                <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="Email" placeholder="Email" value="{{m.Email}}" type="text" required></TD>
+             </TR>
+        </TABLE>
+    {% endfor %}
+    <br>
+    <input type="submit" style="background-color: #008CBA; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">
+
+
+    <!-- END Specific to Movie Add -->
+
+
+</form>
+
+{% endblock %}

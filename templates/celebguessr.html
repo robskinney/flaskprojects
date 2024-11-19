@@ -1,0 +1,311 @@
+{% extends "basecelebguessr.html" %}
+{% block title %} CelebGuessr {% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-xl">
+            {% if status %}
+            <div class="row">
+                <div class="d-flex bd-highlight align-items-center" style="max-height: 100px;">
+                    <div>
+                        <h1>Celebrity of the Day</h1>
+                    </div>
+                    <div class="p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" type="button" fill="currentColor" class="bi bi-info-circle" height="25" data-bs-toggle="modal" data-bs-target="#infoModal">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+                          </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h4><b>Game:</b> {{date}}</h4>
+            </div>
+            <div class="row pb-3">
+                <h4><b>Guess:</b> {{guessCount}}</h4>
+            </div>
+            <div class="modal" tabindex="-1" role="dialog" id="infoModal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Welcome to CelebGuessr!</h5>
+                    </div>
+                    <div class="modal-body">
+                        The goal of the game is to guess the Actor or Actress of the Day (AoTD) in as few guesses as possible! Pressing 'tip' gives information about the celebrity, and each guess
+                        tells you how many degrees of separation you are from the AoTD. Actors are connected by the movies they've performed in, therefore: <br><br>
+                        <ul>
+                            <li>1 celeb away = Your guess performed in the same movie as the AoTD</li>
+                            <li>2 celebs away = Your guess shared a co-actor or actress with the AoTD but have never been in a film together</li>
+                            <li>3 celebs away = Your guess has been in a film with someone who has also been in a film with the AoTD</li>
+                        </ul>
+                        This was inspired by <a href="https://oracleofbacon.org/">'the Oracle of Bacon'</a> and <a href="https://www.nytimes.com/games/wordle/index.html">'Wordle.'</a>
+                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+                <form action="/celebguessr" method="post">
+                    <input type="text" class="form-control form-control-lg" id="userInput" name="userInput" placeholder="Enter your guess" style="width: 100%;">
+                    <div class="container text-center pt-4 pb-5">
+                        <button type="submit" name="action" value="Submit" class="btn-lg btn-primary">Submit</button>
+                        <button type="submit" name="action" value="tip" class="btn-lg btn-warning">Tip</button>
+                    </div>
+                </form>
+        {% else %}
+
+
+        <div class="d-flex bd-highlight w-100 align-items-center" style="max-height: 100px;">
+            <div class="w-100">
+                <h1>Celebrity of the Day                 <svg xmlns="http://www.w3.org/2000/svg" width="80" type="button" fill="currentColor" class="bi bi-info-circle" height="25" data-bs-toggle="modal" data-bs-target="#infoModal">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+                    </svg></h1>
+            </div>
+            <div>
+                <button type="button" class="btn-lg btn-success col-auto" data-bs-toggle="modal" data-bs-target="#myModal">Share</button>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <h4><b>Game:</b> {{date}}</h4>
+        </div>
+        <div class="row pb-3">
+            <h4><b>Guess:</b> {{guessCount}}</h4>
+        </div>
+        <div class="modal" tabindex="-1" role="dialog" id="infoModal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Welcome to CelebGuessr!</h5>
+                </div>
+                <div class="modal-body">
+                The goal of the game is to guess the Actor or Actress of the Day (AoTD) in as few guesses as possible! Pressing 'tip' gives information about the celebrity, and each guess
+                tells you how many degrees of separation you are from the AoTD. Actors are connected by the movies they've performed in, therefore: <br><br>
+                <ul>
+                    <li>1 celeb away = Your guess performed in the same movie as the AoTD</li>
+                    <li>2 celebs away = Your guess shared a co-actor or actress with the AoTD but have never been in a film together</li>
+                    <li>3 celebs away = Your guess has been in a film with someone who has also been in a film with the AoTD</li>
+                </ul>
+                This was inspired by <a href="https://oracleofbacon.org/">'the Oracle of Bacon'</a> and <a href="https://www.nytimes.com/games/wordle/index.html">'Wordle.'</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+            <!-- Bootstrap Modal -->
+            <div class="modal" tabindex="-1" role="dialog" id="myModal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <svg class="dn" hidden>
+                        <defs>
+                          <symbol id="svg-confetti">
+                            <path fill="currentColor" d="M-.017 6.91L4.035.012l2.587 1.52L2.57 8.43z"></path>
+                          </symbol>
+                        </defs>
+                      </svg>
+                    <div class="modal-header">
+                    <h5 class="modal-title">Congratulations!</h5>
+                    </div>
+                    <div class="modal-body">
+                    {% if guessCount == 1 %}
+                        {% if numTips == minguessestips[1] %}
+                            <p>You guessed the Celebrity of the Day in {{guessCount}} attempt with {{numTips}} tips. You're today's best performer!</p>
+                        {% else %}
+                            <p>You guessed the Celebrity of the Day in {{guessCount}} attempt with {{numTips}} tips.</p>
+                        {% endif %}
+                    {% else %}
+                        {% if guessCount == minguessestips[0] and numTips == minguessestips[1] %}
+                            <p>You guessed the Celebrity of the Day in {{guessCount}} attempts with {{numTips}} tips. You're today's best performer!</p>
+                        {% else %}
+                            <p>You guessed the Celebrity of the Day in {{guessCount}} attempts with {{numTips}} tips.</p>
+                        {% endif %}
+                    {% endif %}
+                    Fun Stats:
+                    <ul>
+                        <li>{{ ((todaywon/todayplayers)*100)|round(2,'floor') }}% of {{todayplayers}} total players guessed today's celebrity</li>
+                        {% if todaywon == 0 %}
+                        <li>The average player used {{ (todayguesses)|round(2,'floor') }} guesses to find today's celeb</li>
+                        <li>The average player used {{ (todaytips)|round(2,'floor') }} tips to find today's celeb</li>
+                        {% else %}
+                        <li>The average player used {{ (todayguesses/todaywon)|round(2,'floor') }} guesses to find today's celeb</li>
+                        <li>The average player used {{ (todaytips/todaywon)|round(2,'floor') }} tips to find today's celeb</li>
+                        {% endif %}
+                        {% if minguessestips[0] == 1 %}
+                            {% if minguessestips[1] == 1 %}
+                                <li>Today's best performer used {{minguessestips[0]}} guess and {{minguessestips[1]}} tip</li>
+                            {% else %}
+                                <li>Today's best performer used {{minguessestips[0]}} guess and {{minguessestips[1]}} tips</li>
+                            {% endif %}
+                        {% else %}
+                            {% if minguessestips[1] == 1 %}
+                                <li>Today's best performer used {{minguessestips[0]}} guesses and {{minguessestips[1]}} tip</li>
+                            {% else %}
+                                <li>Today's best performer used {{minguessestips[0]}} guesses and {{minguessestips[1]}} tips</li>
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                    <br>
+                    <h3 class="text-center" style="margin-top: -.3em;"><span id='HMSremaining' class="justify-center text-center"></span></h3>
+                    <p class="text-center" style="margin-top:-.5em;">until the next Celebrity of the Day</p>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <a href="sms:+1234567890?body=I%20guessed%20today's%20CelebGuessr%20in%20{{guessCount}}%20attempts!%20Try%20it%20now%20at%20https://rskinney.pythonanywhere.com/celebguessr." target="_blank">
+                            <button type="button" class="btn btn-success">Share via SMS</button>
+                        </a> -->
+                        <button type="button" class="btn btn-success" id="shareBtn">Share</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <form action="/celebguessr">
+                <div class="col-md-12">
+                    <input type="text" class="form-control form-control-lg disabled" id="userInput" name="userInput" placeholder="Enter your guess" style="width: 100%;" disabled>
+                </div>
+                <div class="container text-center pt-4 pb-5">
+                    <button class="btn-lg btn-primary disabled" disabled>Submit</button>
+                    <button class="btn-lg btn-warning disabled" disabled>Tip</button>
+                </div>
+            </form>
+        {% endif %}
+        {% if result %}
+            <div class="alert alert-danger fade show">
+                {{result[0]}}
+            </div>
+        {% endif %}
+
+        {% if tips %}
+            {% for tip in tips %}
+                <div class="alert alert-warning fade show">
+                    {% autoescape false %}
+                        <strong>Tip {{tips.index(tip)+1}}:</strong> {{tip}}
+                    {% endautoescape %}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if guesses %}
+            {% for guess in guesses %}
+                {% if guess[1] == 0 %}
+                    <div class="alert alert-success fade show">
+                        <div class="d-flex align-items-center" style="max-height: 100px;">
+                            <div class="p-10" style="flex: 4 1 0;">
+                                {{guess[0]}}
+                            </div>
+                            <div class="p-2" style="flex: 1 1 0;">
+                                <img src={{guess[2]}} class="float-right pull-right responsive-img img-thumbnail" style="max-height:100px; float:right;" alt="Responsive image">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if guess[1] == 1 %}
+                    <div class="alert alert-custom fade show" style="background-color:#c0de85;">
+                        <div class="d-flex align-items-center" style="max-height: 100px;">
+                            <div class="p-10" style="flex: 4 1 0;">
+                                {{guess[0]}}
+                            </div>
+                            <div class="p-2" style="flex: 1 1 0;">
+                                <img src={{guess[2]}} class="float-right pull-right responsive-img img-thumbnail" style="max-height:100px; float:right;" alt="Responsive image">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if guess[1] == 2 %}
+                    <div class="alert alert-custom fade show" style="background-color:#c8de4c;">
+                        <div class="d-flex align-items-center" style="max-height: 100px;">
+                            <div class="p-10" style="flex: 4 1 0;">
+                                {{guess[0]}}
+                            </div>
+                            <div class="p-2" style="flex: 1 1 0;">
+                                <img src={{guess[2]}} class="float-right pull-right responsive-img img-thumbnail" style="max-height:100px; float:right;" alt="Responsive image">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if guess[1] == 3 %}
+                    <div class="alert alert-custom fade show" style="background-color:#e2de59;">
+                        <div class="d-flex align-items-center" style="max-height: 100px;">
+                            <div class="p-10" style="flex: 4 1 0;">
+                                {{guess[0]}}
+                            </div>
+                            <div class="p-2" style="flex: 1 1 0;">
+                                <img src={{guess[2]}} class="float-right pull-right responsive-img img-thumbnail" style="max-height:100px; float:right;" alt="Responsive image">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if guess[1] == 4 %}
+                    <div class="alert alert-custom fade show" style="background-color:#e6f143;">
+                        <div class="d-flex align-items-center" style="max-height: 100px;">
+                            <div class="p-10" style="flex: 4 1 0;">
+                                {{guess[0]}}
+                            </div>
+                            <div class="p-2" style="flex: 1 1 0;">
+                                <img src={{guess[2]}} class="float-right pull-right responsive-img img-thumbnail" style="max-height:100px; float:right;" alt="Responsive image">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if guess[1] == 5 %}
+                    <div class="alert alert-custom fade show" style="background-color:#e5ac55;color:#fff;">
+                        <div class="d-flex align-items-center" style="max-height: 100px;">
+                            <div class="p-10" style="flex: 4 1 0;">
+                                {{guess[0]}}
+                            </div>
+                            <div class="p-2" style="flex: 1 1 0;">
+                                <img src={{guess[2]}} class="float-right pull-right responsive-img img-thumbnail" style="max-height:100px; float:right;" alt="Responsive image">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if guess[1] == 6 %}
+                    <div class="alert alert-custom fade show" style="background-color:#fa781b;color:#fff;">
+                        <div class="d-flex align-items-center" style="max-height: 100px;">
+                            <div class="p-10" style="flex: 4 1 0;">
+                                {{guess[0]}}
+                            </div>
+                            <div class="p-2" style="flex: 1 1 0;">
+                                <img src={{guess[2]}} class="float-right pull-right responsive-img img-thumbnail" style="max-height:100px; float:right;" alt="Responsive image">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if guess[1] == 7 %}
+                    <div class="alert alert-custom fade show" style="background-color:#e61b1b;color:#fff;">
+                        <div class="d-flex align-items-center" style="max-height: 100px;">
+                            <div class="p-10" style="flex: 4 1 0;">
+                                {{guess[0]}}
+                            </div>
+                            <div class="p-2" style="flex: 1 1 0;">
+                                <img src={{guess[2]}} class="float-right pull-right responsive-img img-thumbnail" style="max-height:100px; float:right;" alt="Responsive image">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if guess[1] == 10 %}
+                <div class="alert alert-custom fade show" style="background-color:#f04a4a;color:#fff;">
+                    <div class="d-flex align-items-center" style="max-height: 100px;">
+                        <div class="p-10" style="flex: 4 1 0;">
+                            {{guess[0]}}
+                        </div>
+                        <div class="p-2" style="flex: 1 1 0;">
+                            <img src={{guess[2]}} class="float-right pull-right responsive-img img-thumbnail" style="max-height:100px; float:right;" alt="Responsive image">
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
