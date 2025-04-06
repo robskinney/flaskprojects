@@ -1,6 +1,0 @@
-SECRET_KEY = 'iliketurtles'
-DB_HOST = ''
-DB_PORT = ''
-DB_USER = ''
-DB_PASS = ''
-DB_DATABASE = ''

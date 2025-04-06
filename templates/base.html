@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
     <title>{% block title %}{% endblock %}</title>
-</head>
-<!-- Uses a very similar navbar to the dino site, only uses the B.There option and the Events option. -->
-<body class="d-flex flex-column h-100 p-5">
-  <div class="container">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  </head>
+  <!-- Uses a very similar navbar to the dino site, only uses the B.There option and the Events option. -->
+  <body class="d-flex flex-column h-100 p-5">
+    <div class="container">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{url_for('autotrackrindex')}}">AutoTrackr</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="navbar-brand" href="{{url_for('autotrackrindex')}}"
+            >AutoTrackr</a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -25,8 +40,8 @@
             </ul>
           </div>
         </div>
-    </nav>
-  </div>
+      </nav>
+    </div>
     <div class="container p-5">
       <main class="flex-shrink-0">
         <div class="container">
@@ -38,14 +53,20 @@
     <!-- Simple footer found on the Bootstrap website. -->
     <div class="container">
       <footer class="footer mt-auto py-3 bg-light">
-          <div class="container">
-              <span class="text-muted">AutoTrackr Event Management Service. &copy; 2023</span>
-          </div>
+        <div class="container">
+          <span class="text-muted"
+            ><a href="https://www.robertskinney.com/">Robert Kinney</a> &copy;
+            2025</span
+          >
+        </div>
       </footer>
     </div>
-  
-    <!-- JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-</body>
 
+    <!-- JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

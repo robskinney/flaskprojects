@@ -262,12 +262,6 @@ def attendeecheck(name,email,comment):
         error=" \n".join(msg)
     return error
 
-
-#Connecting to my database via PyMySQL, using a config.py file
-app.config.from_pyfile(app.root_path + '/config_defaults.py')
-if exists(app.root_path + '/config.py'):
-    app.config.from_pyfile(app.root_path + '/config.py')
-
 #   Let's also add the name "index" since that is a common name for a website home page
 @app.route("/gorillacarts")    # Decorator - Now
 
@@ -506,7 +500,7 @@ def placeorder():
 
         #THROWING AN ERROR MESSAGE WHEN THERE ARE NOT ENOUGH MATERIALS IN THE INVENTORY
         if c==1:
-            return render_template('placeorder.html',errormessage="Not enough materials in inventory, you need more:",errorpart2=needmore,errormessage2="With your material inventory, you can purchase:",errorpart3=aorder,message=sList,customermessage=cList,productmessage=pList,ordermessage=oList)
+            return render_template('placeorder.html',errormessage="Not enough materials in inventory, you need more:",errorpart2=needmore,errormessage2="With your current inventory, you can purchase:",errorpart3=aorder,message=sList,customermessage=cList,productmessage=pList,ordermessage=oList)
 
         #IF THERE IS ENOUGH MATERIAL IN THE INVENTORY THEN CALCULATE THE TOTAL PRICE OF THE ORDER AND PLACE THE ORDER
         if c==0:
